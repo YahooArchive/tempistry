@@ -1,0 +1,43 @@
+{
+  "name": "tempistry",
+  "version": "1.0.0",
+  "description": "ultra light-weight registry for serializing javascript templates and applying pre/post render logic",
+  "main": "index.js",
+  "browser": "browser.js",
+  "scripts": {
+    "test": "mocha test -R tap",
+    "coverage": "istanbul cover node_modules/.bin/_mocha --dir ${COVERAGE_DIR}"
+  },
+  "files": [
+    "index.js",
+    "browser.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yahoo/tempistry.git"
+  },
+  "keywords": [
+    "yahoo",
+    "template",
+    "client",
+    "server",
+    "registry"
+  ],
+  "author": "Brad Harris <bharris@yahoo-inc.com>",
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "https://github.com/yahoo/tempistry/blob/master/LICENSE.md"
+    }
+  ],
+  "devDependencies": {
+    "jade": "*",
+    "chai": "^1.9.1",
+    "mocha": "^1.20.0",
+    "istanbul": "^0.2.8"
+  },
+  "dependencies": {
+    "temper": "~0.1.8",
+    "deap": "~0.2.2"
+  }
+}
