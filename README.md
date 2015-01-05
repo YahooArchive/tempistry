@@ -1,6 +1,8 @@
 tempistry
 =======
 
+[![Build Status](https://travis-ci.org/yahoo/tempistry.svg?branch=master)](https://travis-ci.org/yahoo/tempistry)
+
 ultra light-weight registry for serializing javascript templates and applying pre/post render logic
 
 ## Install
