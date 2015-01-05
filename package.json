@@ -10,7 +10,8 @@
   },
   "files": [
     "index.js",
-    "browser.js"
+    "browser.js",
+    "transform.js"
   ],
   "repository": {
     "type": "git",
