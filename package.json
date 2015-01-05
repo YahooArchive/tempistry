@@ -1,6 +1,6 @@
 {
   "name": "tempistry",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ultra light-weight registry for serializing javascript templates and applying pre/post render logic",
   "main": "index.js",
   "browser": "browser.js",
