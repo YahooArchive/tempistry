@@ -10,6 +10,8 @@ describe('tempistry', function() {
 
     it('should be defined correctly', function() {
         assert.isFunction(tempistry.serialize);
+        assert.isFunction(tempistry.serializeSource);
+        assert.isFunction(tempistry.extensions);
     });
 
     it('tempistry.serialize defaults', function () {
@@ -54,6 +56,15 @@ describe('tempistry', function() {
         assert.isFunction(template.server);
         assert.match(template.client, (/<h1>bai/));
         assert.equal(template.server({name:'Kellan'}), '<h1>bai Kellan</h1>');
+
+    });
+
+    it('tempistry.extensions should return an array of file extensions', function() {
+        var extensions = tempistry.extensions();
+
+        assert.isArray(extensions);
+        assert.isTrue(extensions.length > 0);
+        extensions.forEach(assert.isString.bind(assert));
 
     });
 
