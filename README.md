@@ -36,6 +36,38 @@ You can also grab the full template [data object](https://github.com/bigpipe/tem
 var data = tempistry.serialize('/my/templates/file.jade', true);
 ```
 
+## Browserify Transform
+
+If you're using Browserify, the easiest way to plug tempistry into your pipeline is via the included transform, `tempistry/transform`.  You can then require your template files directly and have them automatically registered with tempistry.
+
+
+```bash
+# Via cli
+browserify -t tempistry/transform main.js
+```
+
+```javascript
+// Via api
+var b = browserify().transform('tempistry/transform');
+```
+
+
+```javascript
+// register pre-render hook
+var tempistry = require('tempistry');
+
+tempistry.on('pre-render', function(data) {
+	data.helpers = myViewHelpers;
+});
+
+var template = require('./things.jade');
+
+// *helpers* will be available in the template due to the pre-render hook above
+var html = template({
+	name: 'Kellan'
+});
+```
+
 ## Client-Side
 
 Tempistry runs in the browser w/ browserify and acts as a registry to hook pre/post render logic into.  This is useful for mixing in common view data such as formatting helpers.  It works well when combined with the server side `serialize()` function, but you can register any function you want with it.
@@ -44,16 +76,18 @@ Tempistry runs in the browser w/ browserify and acts as a registry to hook pre/p
 var tempistry = require('tempistry');
 
 // register functions w/ the global tempistry lib, receive the template function back
-var template = tempistry.register(function() { /** function string provider from server-side tempistry.serialize() call*/});
+var template = tempistry.register(function() { /** function string provided from server-side tempistry.serialize() call*/});
 
 // mixin pre/post render logic
 tempistry.on('pre-render', function(data) {
+    // override "name"
     data.name = 'asher';
 });
 
-// wire in post-render logic, receiving the data that was rendered
-tempistry.on('post-render', function(data) {
-    console.log(data.name); // ahser
+// wire in post-render logic, receiving the data that was rendered and the html string
+tempistry.on('post-render', function(result) {
+    console.log(result.data.name); // asher
+    console.log(result.html); // html string returned from template fn
 });
 
 // call the template function
@@ -63,6 +97,7 @@ var html = template({
 
 // name will be 'asher' in the html produced
 ```
+
 
 ## License
 This software is free to use under the Yahoo! Inc. BSD license.
