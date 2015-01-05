@@ -20,3 +20,10 @@ exports.serializeSource = function(source, filename, returnData) {
 
     return !!returnData ? data : data.client;
 };
+
+// Return an array of supported file extensions
+exports.extensions = function() {
+    return Object.keys(temper.supported).map(function(ext) {
+        return ext.replace(/^\./, '');
+    });
+};
